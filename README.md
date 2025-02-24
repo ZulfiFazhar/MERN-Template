@@ -72,13 +72,6 @@ monorepo/
      PORT=<yourBackEndPort>
      ```
 
-   - navigate to `apps/server` and create `.env` file
-
-     ```bash
-     cd apps/server
-     cp .env.example .env
-     ```
-
    - Initialize and generate Prisma Client
 
      ```bash
