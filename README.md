@@ -1,4 +1,6 @@
-# Monorepo Full-Stack Application
+# MERN (MongoDB + Express + React + NodeJS)
+
+> Instead of using `npm`, I use `bun` for package management
 
 This monorepo integrates a full-stack application with both a **frontend** and a **backend** in a single repository. The architecture is designed for efficient development, easy collaboration, and seamless integration between the client and server.
 
