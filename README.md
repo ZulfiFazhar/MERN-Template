@@ -72,6 +72,13 @@ monorepo/
      PORT=<yourBackEndPort>
      ```
 
+   - Install dependencies
+
+     ```bash
+     bun install
+     ```
+
+
    - Initialize and generate Prisma Client
 
      ```bash
@@ -83,12 +90,6 @@ monorepo/
 
      ```bash
      bunx tsx index.ts
-     ```
-
-   - Install dependencies
-
-     ```bash
-     bun install
      ```
 
 4. Frontend configuration
