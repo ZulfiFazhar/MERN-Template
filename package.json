@@ -1,0 +1,16 @@
+{
+  "name": "monorepo",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"cd apps/server && bun run dev\" \"cd apps/client && bun run dev\""
+  },
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "concurrently": "^9.1.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

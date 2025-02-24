@@ -1,0 +1,6 @@
+[install]
+hoist = true
+
+[workspace]
+root = "."
+packages = ["apps/*"]
