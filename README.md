@@ -1,15 +1,148 @@
-# monorepo
+# Monorepo Full-Stack Application
 
-To install dependencies:
+This monorepo integrates a full-stack application with both a **frontend** and a **backend** in a single repository. The architecture is designed for efficient development, easy collaboration, and seamless integration between the client and server.
 
-```bash
-bun install
+## Project Structure
+
+```plaintext
+monorepo/
+├── apps/
+│   ├── client/         # Frontend application (React + Vite + Tailwind CSS + ShadCN UI)
+│   └── server/         # Backend application (Express + Prisma + MongoDB)
+├── package.json        # Root package.json (managed with Bun and workspaces)
+└── README.md           # Project documentation
 ```
 
-To run:
+## Technologies Used
+
+- **Frontend (apps/client):**
+
+  - React (with TypeScript)
+  - Vite (build tool and development server)
+  - Tailwind CSS & ShadCN UI for styling
+
+- **Backend (apps/server):**
+
+  - Express for API development
+  - MongoDB running on `localhost:27017`
+  - Prisma as the ORM
+  - Nodemon/tsx for hot-reloading during development
+
+- **Monorepo Management:**
+  - Bun for package management and workspaces
+  - Concurrently for running both frontend and backend simultaneously
+
+## Prerequisites
+
+- [Bun](https://bun.sh/) installed
+- MongoDB installed and running on `localhost:27017`
+  - **Note:** For Prisma with MongoDB transactions, you may need to run MongoDB as a replica set.
+- (Optional) Node.js for additional tooling
+
+## Setup Instructions
+
+1. **Clone the Repository:**
+
+   ```bash
+   git clone <repository-url>
+   cd <repository-name>
+   ```
+
+2. Install Dependencies in root directory
+
+   ```bash
+   bun install
+   ```
+
+3. Backend configuration
+
+   - navigate to `apps/server` and create `.env` file
+
+     ```bash
+     cd apps/server
+     cp .env.example .env
+     ```
+
+   - configure `.env` file
+
+     ```ini
+     DATABASE_URL="mongodb://localhost:27107/<yourDB>"
+     PORT=<yourBackEndPort>
+     ```
+
+   - navigate to `apps/server` and create `.env` file
+
+     ```bash
+     cd apps/server
+     cp .env.example .env
+     ```
+
+   - Initialize and generate Prisma Client
+
+     ```bash
+     bunx prisma init
+     bunx prisma generate
+     ```
+
+   - Test MongoDB Connection
+
+     ```bash
+     bunx tsx index.ts
+     ```
+
+   - Install dependencies
+
+     ```bash
+     bun install
+     ```
+
+4. Frontend configuration
+
+   - navigate to `apps/client` and install dependencies
+
+     ```bash
+     cd apps/server
+     bun install
+     ```
+
+## Running the Application
+
+Go to root directory, then run
 
 ```bash
 bun run dev
 ```
 
-This project was created using `bun init` in bun v1.2.3. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+This command will concurently run:
+
+- The backend server from `apps/server`
+- The frontend server from `apps/client`
+
+You will get the following output like this
+
+```bash
+$ concurrently "cd apps/server && bun run dev" "cd apps/client && bun run dev"
+[0] $ nodemon
+[1] $ vite
+[0] [nodemon] 3.1.9
+[0] [nodemon] reading config ./nodemon.json
+[0] [nodemon] to restart at any time, enter `rs`
+[0] [nodemon] or send SIGHUP to 643592 to restart
+[0] [nodemon] watching path(s): **/*
+[0] [nodemon] watching extensions: ts
+[0] [nodemon] starting `tsx server.ts`
+[0] [nodemon] spawning
+[0] [nodemon] child pid: 643621
+[0] [nodemon] watching 9 files
+[0] Server running on http://localhost:3000
+[1]
+[1]   VITE v6.1.1  ready in 364 ms
+[1]
+[1]   ➜  Local:   http://localhost:5173/
+[1]   ➜  Network: use --host to expose
+```
+
+## Development Workflow
+
+- **Backend**: changes in `apps/server` are monitored by nodemon/tsx, triggering an automatic restart
+- **Frontend**: changes in `app/client` are automatically reload via vite
