@@ -1,5 +1,5 @@
 {
-  "watch": ["server.ts"],
+  "watch": ["*.ts"],
   "ext": "ts",
   "exec": "tsx server.ts",
   "verbose": true

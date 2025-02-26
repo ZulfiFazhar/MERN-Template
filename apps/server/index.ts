@@ -14,7 +14,7 @@ async function main() {
 
 main()
   .catch((error) => {
-    console.error("Terjadi error:", error);
+    console.error("Error:", error);
     process.exit(1);
   })
   .finally(async () => {
