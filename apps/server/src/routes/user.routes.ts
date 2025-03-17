@@ -4,7 +4,10 @@ import { UserController } from "@/controllers/user.controller";
 const router = Router();
 const userController = new UserController();
 
-router.post("/users", (req, res) => userController.createUser(req, res));
+// POST /users
+router.post("/add-user", (req, res) => userController.createUser(req, res));
+
+// GET /users
 router.get("/users", (req, res) => userController.getUsers(req, res));
 
 export default router;

@@ -1,22 +1,21 @@
-import mongoose from "mongoose";
+import { Schema, model, Document, Model } from "mongoose";
 
-const userSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true, unique: true },
-});
-
-const User = mongoose.model("User", userSchema);
-
-export class UserModel {
-  static async createUser(
-    name: string,
-    email: string
-  ): Promise<mongoose.Document> {
-    const user = new User({ name, email });
-    return await user.save();
-  }
-
-  static async getUsers(): Promise<(typeof User)[]> {
-    return await User.find();
-  }
+// Definisikan interface yang mewarisi Document
+export interface IUser extends Document {
+  name: string;
+  email: string;
 }
+
+// Definisikan schema untuk User
+const userSchema = new Schema<IUser>(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+  },
+  {
+    timestamps: true, // jika ingin menyimpan createdAt dan updatedAt
+  }
+);
+
+// Export model mongoose untuk User
+export const User: Model<IUser> = model<IUser>("User", userSchema);

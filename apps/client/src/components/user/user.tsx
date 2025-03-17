@@ -16,7 +16,7 @@ export default function User() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const res = await api.post("/users", { name, email });
+      const res = await api.post("/add-user", { name, email });
       console.log("User created:", res.data);
       setName("");
       setEmail("");
@@ -50,11 +50,11 @@ export default function User() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full hover:cursor-pointer">
           Test send data to DB
         </Button>
       </form>
-      <Button onClick={handleGetUsers} className="w-full">
+      <Button onClick={handleGetUsers} className="w-full hover:cursor-pointer">
         Get Users
       </Button>
       <ul>

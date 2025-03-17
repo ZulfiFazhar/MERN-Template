@@ -1,11 +1,12 @@
-import { response, type Request, type Response } from "express";
-import { UserModel } from "@/models/user.model";
+import { type Request, type Response } from "express";
+import { UserService } from "@/services/user.service";
 
 export class UserController {
-  async createUser(req: Request, res: Response): Promise<void> {
+  public async createUser(req: Request, res: Response): Promise<void> {
     try {
       const { name, email } = req.body;
-      const newUser = await UserModel.createUser(name, email);
+      const newUser = await UserService.createUser(name, email);
+
       res.status(201).json({
         response: 201,
         message: "User created successfully",
@@ -17,9 +18,9 @@ export class UserController {
     }
   }
 
-  async getUsers(req: Request, res: Response): Promise<void> {
+  public async getUsers(req: Request, res: Response): Promise<void> {
     try {
-      const users = await UserModel.getUsers();
+      const users = await UserService.getUsers();
       res.status(200).json({
         response: 200,
         message: "Users retrieved successfully",
