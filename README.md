@@ -10,7 +10,7 @@ This monorepo integrates a full-stack application with both a **frontend** and a
 monorepo/
 ├── apps/
 │   ├── client/         # Frontend application (React + Vite + Tailwind CSS + ShadCN UI)
-│   └── server/         # Backend application (Express + Prisma + MongoDB)
+│   └── server/         # Backend application (Express + Mongoose + MongoDB)
 ├── package.json        # Root package.json (managed with Bun and workspaces)
 └── README.md           # Project documentation
 ```
@@ -26,8 +26,8 @@ monorepo/
 - **Backend (apps/server):**
 
   - Express for API development
-  - MongoDB running on `localhost:27017`
-  - Prisma as the ORM
+  - MongoDB `recommended using mongodb atlas`
+  - Mongoose as an ODM (Object Data Modeling) library for MongoDB
   - Nodemon/tsx for hot-reloading during development
 
 - **Monorepo Management:**
@@ -37,9 +37,8 @@ monorepo/
 ## Prerequisites
 
 - [Bun](https://bun.sh/) installed
-- MongoDB installed and running on `localhost:27017`
-  - **Note:** For Prisma with MongoDB transactions, you may need to run MongoDB as a replica set.
-- (Optional) Node.js for additional tooling
+- [Node js](https://nodejs.org/en/download) version 22
+- [MongoDB Server](https://www.mongodb.com/try/download/community) and [MongoDB Compass](https://www.mongodb.com/try/download/compass) (Optional)
 
 ## Setup Instructions
 
@@ -68,7 +67,7 @@ monorepo/
    - configure `.env` file
 
      ```ini
-     DATABASE_URL="mongodb://localhost:27107/<yourDB>"
+     MONGO_URI="mongodb://localhost:27107/<yourDB>"
      PORT=<yourBackEndPort>
      ```
 
@@ -76,14 +75,6 @@ monorepo/
 
      ```bash
      bun install
-     ```
-
-
-   - Initialize and generate Prisma Client
-
-     ```bash
-     bunx prisma init
-     bunx prisma generate
      ```
 
    - Test MongoDB Connection

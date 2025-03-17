@@ -27,7 +27,7 @@
     // create aliases for paths
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["./**/*.ts"]

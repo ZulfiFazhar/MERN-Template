@@ -4,14 +4,12 @@
     "": {
       "name": "server",
       "dependencies": {
-        "@prisma/client": "^6.4.1",
         "cors": "^2.8.5",
         "dotenv": "^16.4.7",
         "express": "^4.21.2",
         "mongodb": "^6.13.1",
         "mongoose": "^8.10.1",
         "nodemon": "^3.1.9",
-        "prisma": "^6.4.1",
       },
       "devDependencies": {
         "@types/bun": "latest",
@@ -37,18 +35,6 @@
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.9", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.0.3", "@jridgewell/sourcemap-codec": "^1.4.10" } }, "sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ=="],
 
     "@mongodb-js/saslprep": ["@mongodb-js/saslprep@1.2.0", "", { "dependencies": { "sparse-bitfield": "^3.0.3" } }, ""],
-
-    "@prisma/client": ["@prisma/client@6.4.1", "", { "peerDependencies": { "prisma": "*", "typescript": ">=5.1.0" } }, ""],
-
-    "@prisma/debug": ["@prisma/debug@6.4.1", "", {}, ""],
-
-    "@prisma/engines": ["@prisma/engines@6.4.1", "", { "dependencies": { "@prisma/debug": "6.4.1", "@prisma/engines-version": "6.4.0-29.a9055b89e58b4b5bfb59600785423b1db3d0e75d", "@prisma/fetch-engine": "6.4.1", "@prisma/get-platform": "6.4.1" } }, ""],
-
-    "@prisma/engines-version": ["@prisma/engines-version@6.4.0-29.a9055b89e58b4b5bfb59600785423b1db3d0e75d", "", {}, ""],
-
-    "@prisma/fetch-engine": ["@prisma/fetch-engine@6.4.1", "", { "dependencies": { "@prisma/debug": "6.4.1", "@prisma/engines-version": "6.4.0-29.a9055b89e58b4b5bfb59600785423b1db3d0e75d", "@prisma/get-platform": "6.4.1" } }, ""],
-
-    "@prisma/get-platform": ["@prisma/get-platform@6.4.1", "", { "dependencies": { "@prisma/debug": "6.4.1" } }, ""],
 
     "@tsconfig/node10": ["@tsconfig/node10@1.0.11", "", {}, "sha512-DcRjDCujK/kCk/cUe8Xz8ZSpm8mS3mNNpta+jGCA6USEDfktlNvm1+IuZ9eTcDbNk41BHwpHHeW+N1lKCz4zOw=="],
 
@@ -162,8 +148,6 @@
 
     "esbuild": ["esbuild@0.25.0", "", { "optionalDependencies": { "@esbuild/linux-x64": "0.25.0" }, "bin": "bin/esbuild" }, ""],
 
-    "esbuild-register": ["esbuild-register@3.6.0", "", { "dependencies": { "debug": "^4.3.4" }, "peerDependencies": { "esbuild": ">=0.12 <1" } }, ""],
-
     "escape-html": ["escape-html@1.0.3", "", {}, ""],
 
     "etag": ["etag@1.8.1", "", {}, ""],
@@ -268,8 +252,6 @@
 
     "picomatch": ["picomatch@2.3.1", "", {}, "sha512-JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA=="],
 
-    "prisma": ["prisma@6.4.1", "", { "dependencies": { "@prisma/engines": "6.4.1", "esbuild": ">=0.12 <1", "esbuild-register": "3.6.0" }, "peerDependencies": { "typescript": ">=5.1.0" }, "bin": "build/index.js" }, ""],
-
     "proxy-addr": ["proxy-addr@2.0.7", "", { "dependencies": { "forwarded": "0.2.0", "ipaddr.js": "1.9.1" } }, ""],
 
     "pstree.remy": ["pstree.remy@1.1.8", "", {}, "sha512-77DZwxQmxKnu3aR542U+X8FypNzbfJ+C5XQDk3uWjWxn6151aIMGthWYRXTqT1E5oJvg+ljaa2OJi+VfvCOQ8w=="],
@@ -351,8 +333,6 @@
     "yn": ["yn@3.1.1", "", {}, "sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q=="],
 
     "debug/ms": ["ms@2.0.0", "", {}, ""],
-
-    "esbuild-register/debug": ["debug@4.4.0", "", { "dependencies": { "ms": "^2.1.3" } }, ""],
 
     "mquery/debug": ["debug@4.4.0", "", { "dependencies": { "ms": "^2.1.3" } }, ""],
 
