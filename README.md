@@ -67,7 +67,7 @@ monorepo/
    - configure `.env` file
 
      ```ini
-     MONGO_URI="mongodb://localhost:27107/<yourDB>"
+     MONGO_URI="mongodb://localhost:27017/<yourDB>"
      PORT=<yourBackEndPort>
      ```
 

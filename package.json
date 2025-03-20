@@ -9,8 +9,5 @@
   "devDependencies": {
     "@types/bun": "latest",
     "concurrently": "^9.1.2"
-  },
-  "peerDependencies": {
-    "typescript": "^5"
   }
 }
