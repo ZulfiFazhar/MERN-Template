@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./database";
@@ -14,7 +14,7 @@ const PORT = process.env.PORT;
 app.use(cors());
 app.use(express.json());
 app.use("/api", userRoutes);
-app.get("/", async (req, res) => {
+app.get("/", async (_req: Request, res: Response) => {
   try {
     res.json({
       message: "Hello from Bun + Express!",
@@ -29,6 +29,6 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.listen(PORT, () =>
-  console.log(`Server running on http://localhost:${PORT}`)
-);
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
