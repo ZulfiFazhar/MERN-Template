@@ -1,4 +1,4 @@
-import { User, type IUser } from "@/models/user.model";
+import { User, type IUser } from "../models/user.model";
 
 export class UserRepository {
   public static async createUser(name: string, email: string): Promise<IUser> {

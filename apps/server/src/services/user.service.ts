@@ -1,5 +1,5 @@
-import { type IUser } from "@/models/user.model";
-import { UserRepository } from "@/repositories/user.repository";
+import { type IUser } from "../models/user.model";
+import { UserRepository } from "../repositories/user.repository";
 
 export class UserService {
   public static async createUser(name: string, email: string): Promise<IUser> {

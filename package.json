@@ -3,6 +3,7 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
+    "install": "concurrently \"cd apps/server && bun install\" \"cd apps/client && bun install\"",
     "dev": "concurrently \"cd apps/server && bun run dev\" \"cd apps/client && bun run dev\""
   },
   "private": true,

@@ -1,6 +1,0 @@
-{
-  "watch": ["*.ts"],
-  "ext": "ts",
-  "exec": "tsx app.ts",
-  "verbose": true
-}
