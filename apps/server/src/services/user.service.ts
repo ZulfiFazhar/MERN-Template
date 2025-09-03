@@ -1,37 +1,14 @@
-import { type IUser } from "../models/user.model";
 import { UserRepository } from "../repositories/user.repository";
+import { IUser } from "../models/user.model";
+
+const userRepository = new UserRepository();
 
 export class UserService {
-  public static async createUser(
-    name: string,
-    email: string,
-    username: string
-  ): Promise<IUser> {
-    if (!email.includes("@")) {
-      throw new Error("Email tidak valid");
-    }
-
-    return UserRepository.createUser(name, email, username);
+  public async getUsers(): Promise<IUser[]> {
+    return userRepository.find();
   }
 
-  public static async getUsers(): Promise<IUser[]> {
-    return UserRepository.getAllUsers();
-  }
-
-  public static async getUserById(id: string): Promise<IUser | null> {
-    return UserRepository.getUserById(id);
-  }
-
-  public static async updateUser(
-    id: string,
-    name: string,
-    email: string,
-    username: string
-  ): Promise<IUser | null> {
-    return UserRepository.updateUser(id, name, email, username);
-  }
-
-  public static async deleteUser(id: string): Promise<void> {
-    return UserRepository.deleteUser(id);
+  public async getUserById(id: string): Promise<IUser | null> {
+    return userRepository.findById(id);
   }
 }
