@@ -1,8 +1,8 @@
 import { useState } from "react";
-import reactLogo from "@/assets/react.svg";
+import reactLogo from "@/presentation/assets/react.svg";
 import viteLogo from "/vite.svg";
-import { Button } from "@/components/ui/button";
-import User from "@/components/user/user";
+import { Button } from "@/presentation/components/ui/button";
+import { Link } from "react-router-dom";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -26,7 +26,9 @@ function App() {
         Count is {count}
       </Button>
 
-      <User />
+      <Button asChild>
+        <Link to="/users">Go to Users</Link>
+      </Button>
 
       <p className="text-sm text-gray-500">
         Edit <code>src/App.tsx</code> and save to test HMR
@@ -36,3 +38,4 @@ function App() {
 }
 
 export default App;
+
