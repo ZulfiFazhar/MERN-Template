@@ -1,10 +1,26 @@
-# MERN (MongoDB + Express + React + NodeJS)
+# MERN-Template: Full-Stack Application with Clean Architecture
 
-> Instead of using `npm`, I use `bun` for package management
+This is a comprehensive template for building full-stack applications using the MERN stack (MongoDB, Express, React, Node.js), organized as a monorepo and structured with Clean Architecture principles.
 
-This monorepo integrates a full-stack application with both a **frontend** and a **backend** in a single repository. The architecture is designed for efficient development, easy collaboration, and seamless integration between the client and server.
+## Tech Stack
 
-## Project Structure
+- **Monorepo Management:**
+
+  - **Bun:** Used for package management, script running, and managing workspaces.
+
+- **Backend (`apps/server`):**
+
+  - **Node.js & Express:** For building the RESTful API.
+  - **MongoDB & Mongoose:** As the database and Object Data Modeling (ODM) library.
+  - **TypeScript:** For static typing.
+
+- **Frontend (`apps/client`):**
+  - **React:** For building the user interface.
+  - **Vite:** As the build tool and development server.
+  - **TypeScript:** For static typing.
+  - **Tailwind CSS & shadcn/ui:** For modern and responsive styling.
+
+## Monorepo Structure
 
 ```plaintext
 monorepo/
@@ -15,121 +31,81 @@ monorepo/
 └── README.md           # Project documentation
 ```
 
-## Technologies Used
+## Clean Architecture
 
-- **Frontend (apps/client):**
+This project implements Clean Architecture on both the client and server to create a system that is independent of frameworks, UI, and databases, making it more testable and maintainable.
 
-  - React (with TypeScript)
-  - Vite (build tool and development server)
-  - Tailwind CSS & ShadCN UI for styling
+### Server-Side Architecture (`apps/server`)
 
-- **Backend (apps/server):**
+The server follows a layered architecture inspired by Clean Architecture:
 
-  - Express for API development
-  - MongoDB `recommended using mongodb atlas`
-  - Mongoose as an ODM (Object Data Modeling) library for MongoDB
-  - Nodemon/tsx for hot-reloading during development
+- `src/models`: **Domain Layer**. Defines the Mongoose schemas and interfaces for the core entities (e.g., `User`). This is the core of the application.
+- `src/services`: **Application Layer**. Contains the application-specific business logic and use cases.
+- `src/repositories`: **Infrastructure Layer**. Implements the data access logic using Mongoose models, abstracting the database from the application layer.
+- `src/controllers` & `src/routes`: **Presentation Layer**. Handles incoming HTTP requests, calls the appropriate services, and defines the API endpoints.
 
-- **Monorepo Management:**
-  - Bun for package management and workspaces
-  - Concurrently for running both frontend and backend simultaneously
+### Client-Side Architecture (`apps/client`)
 
-## Prerequisites
+The client also follows a similar layered architecture:
 
-- [Bun](https://bun.sh/) installed
-- [Node js](https://nodejs.org/en/download) version 22
-- [MongoDB Server](https://www.mongodb.com/try/download/community) and [MongoDB Compass](https://www.mongodb.com/try/download/compass) (Optional)
+- `src/domain`: **Domain Layer**. Contains the core business logic and type definitions (e.g., `User` model and `IUserRepository` interface).
+- `src/application`: **Application Layer**. Contains the application-specific use cases that orchestrate the flow of data.
+- `src/infrastructure`: **Infrastructure Layer**. Implements the data access logic by calling the server's API.
+- `src/presentation`: **Presentation Layer**. Contains the React components, pages, and hooks responsible for the UI.
 
-## Setup Instructions
+## Getting Started
 
-1. **Clone the Repository:**
+### Prerequisites
+
+- [Bun](https://bun.sh/)
+- [Node.js](https://nodejs.org/) (v18 or higher recommended)
+- [MongoDB](https://www.mongodb.com/try/download/community) (or a MongoDB Atlas account)
+
+### Setup
+
+1. **Clone the repository:**
 
    ```bash
    git clone <repository-url>
-   cd <repository-name>
+   cd MERN-Template
    ```
 
-2. Install Dependencies in root directory
+2. **Install dependencies:**
+
+   Run the following command in the root directory. Bun will automatically install dependencies for all workspaces (`client` and `server`).
 
    ```bash
    bun install
    ```
 
-3. Backend configuration
+3. **Configure the server:**
 
-   - navigate to `apps/server` and create `.env` file
-
-     ```bash
-     cd apps/server
-     cp .env.example .env
-     ```
-
-   - configure `.env` file
-
-     ```ini
-     MONGO_URI="mongodb://localhost:27017/<yourDB>"
-     PORT=<yourBackEndPort>
-     ```
-
-   - Install dependencies
-
-     ```bash
-     bun install
-     ```
-
-   - Test MongoDB Connection
-
-     ```bash
-     bunx tsx index.ts
-     ```
-
-4. Frontend configuration
-
-   - navigate to `apps/client` and install dependencies
-
-     ```bash
-     cd apps/server
-     bun install
-     ```
+   - Navigate to the server directory: `cd apps/server`
+   - Create a `.env` file by copying the example: `cp .env.example .env`
+   - Update the `MONGODB_URI` in your new `.env` file with your MongoDB connection string.
 
 ## Running the Application
 
-Go to root directory, then run
+To run both the client and server concurrently, navigate back to the root directory and run:
 
 ```bash
 bun run dev
 ```
 
-This command will concurently run:
+This will start:
 
-- The backend server from `apps/server`
-- The frontend server from `apps/client`
+- The **backend server** on `http://localhost:3000` (or the port you specified in the `.env` file).
+- The **frontend development server** on `http://localhost:5173`.
 
-You will get the following output like this
+## Naming Conventions
 
-```bash
-$ concurrently "cd apps/server && bun run dev" "cd apps/client && bun run dev"
-[0] $ nodemon
-[1] $ vite
-[0] [nodemon] 3.1.9
-[0] [nodemon] reading config ./nodemon.json
-[0] [nodemon] to restart at any time, enter `rs`
-[0] [nodemon] or send SIGHUP to 643592 to restart
-[0] [nodemon] watching path(s): **/*
-[0] [nodemon] watching extensions: ts
-[0] [nodemon] starting `tsx server.ts`
-[0] [nodemon] spawning
-[0] [nodemon] child pid: 643621
-[0] [nodemon] watching 9 files
-[0] Server running on http://localhost:3000
-[1]
-[1]   VITE v6.1.1  ready in 364 ms
-[1]
-[1]   ➜  Local:   http://localhost:5173/
-[1]   ➜  Network: use --host to expose
-```
+To maintain consistency across the project, we follow these naming conventions:
 
-## Development Workflow
+-   **Folders:** Use `kebab-case` (e.g., `use-cases`, `presentation-layer`).
+-   **Files:** Use `kebab-case` for most files, especially in the backend (e.g., `user.controller.ts`). For React components, use `PascalCase` (e.g., `UserPage.tsx`).
 
-- **Backend**: changes in `apps/server` are monitored by nodemon/tsx, triggering an automatic restart
-- **Frontend**: changes in `app/client` are automatically reload via vite
+See the `README.md` file in each application (`apps/client` and `apps/server`) for more detailed conventions.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](License) file for details.
